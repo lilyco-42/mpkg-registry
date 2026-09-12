@@ -1,0 +1,11 @@
+{
+  "id": "sha256:032bfc0263f7404048e803d71522093da43b6fa07b549372a6aca0ceac17b987",
+  "name": "make-snake-game",
+  "ok": true,
+  "replayed_at": "2026-09-12T20:39:02+0800",
+  "host_os": "Linux-6.6.98-4-aw2511-aarch64-with-glibc2.41",
+  "python": "3.13.5",
+  "shell": "/usr/bin/bash",
+  "steps": 3,
+  "verify": 1
+}
