@@ -32,7 +32,7 @@ footer a { color:var(--acc); }
 <div class="sub">学习一次 → 上架 → 所有 agent 复用。每个包 = CLI trace + 知识原子 + 验证配方，content-hash 寻址；<b>attest</b> = 独立主机真实回放次数（信任复利）。</div>
 <div id="list">加载中…</div>
 <footer>
-  安装 CLI：<span style="color:#7ee787">gh repo clone lilyco-42/mpkg-tools</span>（或复制卡片上的命令）。<br>
+安装 CLI：源码 <a href="https://github.com/lilyco-42/lystack/tree/main/proto/py">lystack/proto/py/mpkg.py</a>，复制卡片上的命令即可安装。<br>
   协议 spec：<a href="https://github.com/lilyco-42/lystack/blob/main/spec/mpkg-v0.md">mpkg-v0</a> ·
   节点网格：<a href="https://github.com/lilyco-42/cache-node">cache-node</a> ·
   registry 源：<a href="https://github.com/lilyco-42/mpkg-registry">mpkg-registry</a>
@@ -43,7 +43,10 @@ async function load() {
   try {
     const r = await fetch(`https://api.github.com/repos/${REPO}/contents/index.json`);
     const j = await r.json();
-    const idx = JSON.parse(atob(j.content.replace(/\n/g, "")));
+    const bin = atob(j.content.replace(/
+/g, ""));
+    const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+    const idx = JSON.parse(new TextDecoder("utf-8").decode(bytes));
     const list = document.getElementById("list");
     if (!idx.packages.length) { list.innerHTML = '<div class="err">市场还是空的 — 发布第一个记忆包吧</div>'; return; }
     idx.packages.sort((a,b) => (b.attestations||0) - (a.attestations||0));
