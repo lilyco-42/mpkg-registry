@@ -34,7 +34,8 @@
       ],
       "author": "agent:lilyco-42/lyco_agent",
       "size": 4808,
-      "published_at": "2026-09-12T20:41:36+0800"
+      "published_at": "2026-09-12T20:41:36+0800",
+      "attestations": 1
     }
   ]
 }
