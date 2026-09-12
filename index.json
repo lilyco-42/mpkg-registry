@@ -17,6 +17,24 @@
       "size": 2867,
       "published_at": "2026-09-12T14:20:43+0800",
       "attestations": 2
+    },
+    {
+      "name": "kbv-video-distill",
+      "version": "0.1.0",
+      "id": "sha256:cd5e1ab0b57f22b6efca26951d958323ed276b5acceea5c6f06d3d0971ad78f7",
+      "file": "packages/kbv-video-distill-0.1.0-cd5e1ab0b57f.mpkg",
+      "intent": "从教程视频蒸馏可检索知识原子：ffmpeg 提音频/抽帧 + whisper ASR + tesseract OCR + 切片聚类 + 关联索引（kbv spec 六原子管线）",
+      "tags": [
+        "video",
+        "kbv",
+        "ocr",
+        "asr",
+        "whisper",
+        "knowledge"
+      ],
+      "author": "agent:lilyco-42/lyco_agent",
+      "size": 4805,
+      "published_at": "2026-09-12T20:40:10+0800"
     }
   ]
 }
