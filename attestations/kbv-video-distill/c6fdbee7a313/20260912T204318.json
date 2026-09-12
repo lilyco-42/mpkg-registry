@@ -1,0 +1,11 @@
+{
+  "id": "sha256:c6fdbee7a313568193c5fa6781c11a6f76d16a0279c85044b8ad291f4385bd6a",
+  "name": "kbv-video-distill",
+  "ok": true,
+  "replayed_at": "2026-09-12T20:43:17+0800",
+  "host_os": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.15",
+  "shell": "C:\\Program Files\\Git\\usr\\bin\\bash.EXE",
+  "steps": 2,
+  "verify": 1
+}
