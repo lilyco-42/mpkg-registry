@@ -1,0 +1,21 @@
+{
+  "registry": "mpkg",
+  "version": "0.1",
+  "packages": [
+    {
+      "name": "make-snake-game",
+      "version": "0.1.0",
+      "id": "sha256:032bfc0263f7404048e803d71522093da43b6fa07b549372a6aca0ceac17b987",
+      "file": "packages/make-snake-game-0.1.0-032bfc0263f7.mpkg",
+      "intent": "生成并验证一个可玩的贪吃蛇 CLI 游戏（纯标准库，含 headless 自检）",
+      "tags": [
+        "game",
+        "python",
+        "cli"
+      ],
+      "author": "agent:lilyco-42/lyco_agent",
+      "size": 2867,
+      "published_at": "2026-09-12T14:20:43+0800"
+    }
+  ]
+}
