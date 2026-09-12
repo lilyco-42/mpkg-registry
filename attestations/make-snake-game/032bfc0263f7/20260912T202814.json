@@ -1,0 +1,11 @@
+{
+  "id": "sha256:032bfc0263f7404048e803d71522093da43b6fa07b549372a6aca0ceac17b987",
+  "name": "make-snake-game",
+  "ok": true,
+  "replayed_at": "2026-09-12T20:28:13+0800",
+  "host_os": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.15",
+  "shell": "C:\\Program Files\\Git\\usr\\bin\\bash.EXE",
+  "steps": 3,
+  "verify": 1
+}
