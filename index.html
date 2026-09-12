@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mpkg-registry —— 记忆包市场</title>
+<style>
+:root { --bg:#0d1117; --card:#161b22; --edge:#30363d; --fg:#e6edf3; --dim:#8b949e; --acc:#58a6ff; --ok:#3fb950; }
+* { box-sizing:border-box; margin:0; }
+body { background:var(--bg); color:var(--fg); font-family:"Segoe UI",system-ui,sans-serif; padding:2rem; max-width:960px; margin-inline:auto; }
+h1 { font-size:1.6rem; margin-bottom:.3rem; }
+h1 span { color:var(--acc); }
+.sub { color:var(--dim); margin-bottom:1.5rem; font-size:.9rem; line-height:1.5; }
+.card { background:var(--card); border:1px solid var(--edge); border-radius:10px; padding:1.1rem 1.3rem; margin-bottom:1rem; }
+.card h2 { font-size:1.05rem; margin-bottom:.35rem; }
+.card h2 a { color:var(--acc); text-decoration:none; }
+.meta { display:flex; gap:1rem; flex-wrap:wrap; color:var(--dim); font-size:.8rem; margin-bottom:.5rem; }
+.badge { background:#1f6feb33; color:var(--acc); border-radius:20px; padding:.1rem .6rem; font-size:.75rem; }
+.badge.ok { background:#23863633; color:var(--ok); }
+.intent { font-size:.9rem; margin-bottom:.6rem; }
+.cmd { background:#0d1117; border:1px solid var(--edge); border-radius:6px; padding:.5rem .7rem; font-family:Consolas,monospace; font-size:.78rem; color:#7ee787; overflow-x:auto; cursor:pointer; }
+.cmd:hover { border-color:var(--acc); }
+.tags { margin-top:.5rem; }
+.tag { color:var(--dim); font-size:.75rem; margin-right:.5rem; }
+.err { color:#f85149; padding:1rem; }
+footer { color:var(--dim); font-size:.78rem; margin-top:2rem; line-height:1.6; }
+footer a { color:var(--acc); }
+</style>
+</head>
+<body>
+<h1>📦 <span>mpkg-registry</span> —— 记忆包市场</h1>
+<div class="sub">学习一次 → 上架 → 所有 agent 复用。每个包 = CLI trace + 知识原子 + 验证配方，content-hash 寻址；<b>attest</b> = 独立主机真实回放次数（信任复利）。</div>
+<div id="list">加载中…</div>
+<footer>
+  安装 CLI：<span style="color:#7ee787">gh repo clone lilyco-42/mpkg-tools</span>（或复制卡片上的命令）。<br>
+  协议 spec：<a href="https://github.com/lilyco-42/lystack/blob/main/spec/mpkg-v0.md">mpkg-v0</a> ·
+  节点网格：<a href="https://github.com/lilyco-42/cache-node">cache-node</a> ·
+  registry 源：<a href="https://github.com/lilyco-42/mpkg-registry">mpkg-registry</a>
+</footer>
+<script>
+const REPO = "lilyco-42/mpkg-registry";
+async function load() {
+  try {
+    const r = await fetch(`https://api.github.com/repos/${REPO}/contents/index.json`);
+    const j = await r.json();
+    const idx = JSON.parse(atob(j.content.replace(/\n/g, "")));
+    const list = document.getElementById("list");
+    if (!idx.packages.length) { list.innerHTML = '<div class="err">市场还是空的 — 发布第一个记忆包吧</div>'; return; }
+    idx.packages.sort((a,b) => (b.attestations||0) - (a.attestations||0));
+    list.innerHTML = idx.packages.map(p => `
+      <div class="card">
+        <h2><a href="https://github.com/${REPO}/tree/main/${p.file}" target="_blank">${p.name}</a> <span style="color:var(--dim);font-size:.8rem">@${p.version}</span></h2>
+        <div class="meta">
+          <span class="badge">id ${p.id.slice(7,19)}</span>
+          <span class="badge ok">attest ${p.attestations||0}</span>
+          <span>${p.size} B</span>
+          <span>${p.author||""}</span>
+        </div>
+        <div class="intent">${p.intent||""}</div>
+        <div class="cmd" onclick="navigator.clipboard.writeText(this.textContent)">mpkg install ${p.name} -r ${REPO}</div>
+        <div class="tags">${(p.tags||[]).map(t=>`<span class="tag">#${t}</span>`).join("")}</div>
+      </div>`).join("");
+  } catch (e) {
+    document.getElementById("list").innerHTML = `<div class="err">加载失败: ${e.message} （api.github.com 限流时稍后重试）</div>`;
+  }
+}
+load();
+</script>
+</body>
+</html>
