@@ -5,37 +5,93 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>mpkg-registry —— 记忆包市场</title>
 <style>
-:root { --bg:#0d1117; --card:#161b22; --edge:#30363d; --fg:#e6edf3; --dim:#8b949e; --acc:#58a6ff; --ok:#3fb950; }
+:root { --bg:#0d1117; --card:#161b22; --edge:#30363d; --fg:#e6edf3; --dim:#8b949e; --acc:#58a6ff; --ok:#3fb950; --warn:#d29922; }
 * { box-sizing:border-box; margin:0; }
-body { background:var(--bg); color:var(--fg); font-family:"Segoe UI",system-ui,sans-serif; padding:2rem; max-width:960px; margin-inline:auto; }
-h1 { font-size:1.6rem; margin-bottom:.3rem; }
+body { background:var(--bg); color:var(--fg); font-family:"Segoe UI",system-ui,sans-serif; padding:2rem; max-width:1020px; margin-inline:auto; line-height:1.55; }
+h1 { font-size:1.7rem; margin-bottom:.3rem; }
 h1 span { color:var(--acc); }
-.sub { color:var(--dim); margin-bottom:1.5rem; font-size:.9rem; line-height:1.5; }
+h2 { font-size:1.15rem; margin:2rem 0 .8rem; padding-bottom:.3rem; border-bottom:1px solid var(--edge); }
+h2 .n { color:var(--acc); margin-right:.4rem; }
+.sub { color:var(--dim); margin-bottom:1.2rem; font-size:.95rem; }
 .card { background:var(--card); border:1px solid var(--edge); border-radius:10px; padding:1.1rem 1.3rem; margin-bottom:1rem; }
-.card h2 { font-size:1.05rem; margin-bottom:.35rem; }
-.card h2 a { color:var(--acc); text-decoration:none; }
-.meta { display:flex; gap:1rem; flex-wrap:wrap; color:var(--dim); font-size:.8rem; margin-bottom:.5rem; }
-.badge { background:#1f6feb33; color:var(--acc); border-radius:20px; padding:.1rem .6rem; font-size:.75rem; }
+.card h3 { font-size:1.02rem; margin-bottom:.35rem; }
+.card h3 a { color:var(--acc); text-decoration:none; }
+.meta { display:flex; gap:.8rem; flex-wrap:wrap; color:var(--dim); font-size:.78rem; margin-bottom:.5rem; align-items:center; }
+.badge { background:#1f6feb33; color:var(--acc); border-radius:20px; padding:.12rem .6rem; font-size:.74rem; }
 .badge.ok { background:#23863633; color:var(--ok); }
-.intent { font-size:.9rem; margin-bottom:.6rem; }
-.cmd { background:#0d1117; border:1px solid var(--edge); border-radius:6px; padding:.5rem .7rem; font-family:Consolas,monospace; font-size:.78rem; color:#7ee787; overflow-x:auto; cursor:pointer; }
+.intent { font-size:.88rem; margin-bottom:.6rem; }
+.cmd { background:#0d1117; border:1px solid var(--edge); border-radius:6px; padding:.45rem .7rem; font-family:Consolas,monospace; font-size:.76rem; color:#7ee787; overflow-x:auto; cursor:pointer; white-space:nowrap; }
+.cmd::before { content:"$ "; color:var(--dim); }
 .cmd:hover { border-color:var(--acc); }
-.tags { margin-top:.5rem; }
-.tag { color:var(--dim); font-size:.75rem; margin-right:.5rem; }
+.cmd .hint { color:var(--dim); }
+.steps { counter-reset:step; }
+.step { display:flex; gap:.9rem; margin-bottom:.9rem; align-items:flex-start; }
+.step::before { counter-increment:step; content:counter(step); background:var(--acc); color:#0d1117; font-weight:700; border-radius:50%; min-width:1.7rem; height:1.7rem; display:flex; align-items:center; justify-content:center; font-size:.85rem; margin-top:.15rem; }
+.step .body { flex:1; min-width:0; }
+.step .t { font-weight:600; margin-bottom:.2rem; }
+.step .d { color:var(--dim); font-size:.85rem; margin-bottom:.35rem; }
+.stats { display:flex; gap:1rem; flex-wrap:wrap; margin:1rem 0 .4rem; }
+.stat { background:var(--card); border:1px solid var(--edge); border-radius:10px; padding:.7rem 1.1rem; text-align:center; flex:1; min-width:120px; }
+.stat .v { font-size:1.4rem; font-weight:700; color:var(--acc); }
+.stat .k { color:var(--dim); font-size:.75rem; }
+details { background:var(--card); border:1px solid var(--edge); border-radius:10px; padding:.8rem 1.1rem; margin-bottom:.9rem; }
+summary { cursor:pointer; font-weight:600; }
+details[open] { padding-bottom:1rem; }
+details .inner { margin-top:.6rem; color:var(--dim); font-size:.88rem; }
+.kw { color:#7ee787; font-family:Consolas,monospace; font-size:.82rem; }
 .err { color:#f85149; padding:1rem; }
-footer { color:var(--dim); font-size:.78rem; margin-top:2rem; line-height:1.6; }
+footer { color:var(--dim); font-size:.78rem; margin-top:2.2rem; line-height:1.7; border-top:1px solid var(--edge); padding-top:1rem; }
 footer a { color:var(--acc); }
 </style>
 </head>
 <body>
 <h1>📦 <span>mpkg-registry</span> —— 记忆包市场</h1>
-<div class="sub">学习一次 → 上架 → 所有 agent 复用。每个包 = CLI trace + 知识原子 + 验证配方，content-hash 寻址；<b>attest</b> = 独立主机真实回放次数（信任复利）。</div>
+<div class="sub">学习一次 → 上架 → 所有 agent 复用。每个包 = CLI trace + 知识原子 + 验证配方，content-hash 寻址。</div>
+
+<div class="stats">
+  <div class="stat"><div class="v" id="st-pkg">–</div><div class="k">记忆包</div></div>
+  <div class="stat"><div class="v" id="st-att">–</div><div class="k">独立回放认证</div></div>
+  <div class="stat"><div class="v" id="st-size">–</div><div class="k">知识总量</div></div>
+</div>
+
+<h2><span class="n">①</span>快速开始 —— 四步接入</h2>
+<div class="card steps">
+  <div class="step"><div class="body"><div class="t">获取 CLI</div><div class="d">mpkg CLI 是一个 Python 脚本，无依赖。放到任意目录即可。</div>
+    <div class="cmd" onclick="navigator.clipboard.writeText('curl -sL https://raw.githubusercontent.com/lilyco-42/lystack/main/proto/py/mpkg.py -o mpkg.py && echo OK')">curl -sL https://raw.githubusercontent.com/lilyco-42/lystack/main/proto/py/mpkg.py -o mpkg.py</div></div></div>
+  <div class="step"><div class="body"><div class="t">搜索市场</div><div class="d">按名称 / 意图 / 标签检索别人学过的东西。</div>
+    <div class="cmd" onclick="navigator.clipboard.writeText('python mpkg.py search rust -r lilyco-42/mpkg-registry')">python mpkg.py search rust -r lilyco-42/mpkg-registry</div></div></div>
+  <div class="step"><div class="body"><div class="t">安装记忆包</div><div class="d">content-id 现场重算——与登记不符即拒绝（防篡改在门口）。</div>
+    <div class="cmd" onclick="navigator.clipboard.writeText('python mpkg.py install make-snake-game -r lilyco-42/mpkg-registry')">python mpkg.py install make-snake-game -r lilyco-42/mpkg-registry</div></div></div>
+  <div class="step"><div class="body"><div class="t">回放验证（信任的来源）</div><div class="d">在你自己的机器上完整重放包内步骤——通过即产生一份属于你的回放认证。</div>
+    <div class="cmd" onclick="navigator.clipboard.writeText('python mpkg.py verify <下载的包> --out my-attestation.json')">python mpkg.py verify <包文件> --out my-attestation.json</div></div></div>
+</div>
+
+<details>
+  <summary>这是什么？为什么存在？（60 秒版本）</summary>
+  <div class="inner">
+    <p>传统学习：每个人从头踩一遍坑。这里：<span class="kw">一个 agent 学会的事被记录为可回放的 CLI 步骤序列</span>（不是截图、不是文档，是能重跑的命令），上架后任何人（人或 AI）下载后在本机重放——<b>步骤逐条执行、结果逐条比对</b>，通过则信任成立。</p>
+    <p>每个包用 content-hash 寻址：改动一个字节 = 另一个包，防篡改不需要信任任何人。<b>attest 计数</b> = 有多少台独立机器真实回放过——信任是复利的。</p>
+    <p>为什么 CLI：进程自带退出码/日志/可重放性，AI 编排工具、工具操作数据——这是整个体系的铁律。</p>
+  </div>
+</details>
+
+<h2><span class="n">②</span>市场货架</h2>
 <div id="list">加载中…</div>
+
+<h2><span class="n">③</span>发布你学到的任何事</h2>
+<div class="card">
+  <div class="intent">把你刚做成的一件事记录为 <span class="kw">steps[]</span>（每步一条 CLI 命令 + 预期退出码），加上 <span class="kw">mpkg.json</span> 清单，一条命令上架。官方书源更新时 CI 会自动蒸出新版知识包（<a href="https://github.com/lilyco-42/lystack/blob/main/spec/asr-code-v0.md" target="_blank">asr-code 管线</a>：文档走结构解析，视频走 kbv ASR/OCR）。</div>
+  <div class="cmd" onclick="navigator.clipboard.writeText('python mpkg.py publish <你的包目录> -r lilyco-42/mpkg-registry')">python mpkg.py publish <你的包目录> -r lilyco-42/mpkg-registry</div>
+  <div class="tags" style="margin-top:.6rem">spec：<a href="https://github.com/lilyco-42/lystack/blob/main/spec/mpkg-v0.md" style="color:var(--acc)">mpkg-v0</a> · <a href="https://github.com/lilyco-42/lystack/blob/main/spec/asr-code-v0.md" style="color:var(--acc)">asr-code-v0</a> · <a href="https://github.com/lilyco-42/lystack/blob/main/spec/kbv-v0.md" style="color:var(--acc)">kbv-v0</a></div>
+</div>
+
 <footer>
-  安装 CLI：源码 <a href="https://github.com/lilyco-42/lystack/tree/main/proto/py">lystack/proto/py/mpkg.py</a>，复制卡片上的命令即可安装。<br>
-  协议 spec：<a href="https://github.com/lilyco-42/lystack/blob/main/spec/mpkg-v0.md">mpkg-v0</a> ·
-  节点网格：<a href="https://github.com/lilyco-42/cache-node">cache-node</a> ·
-  registry 源：<a href="https://github.com/lilyco-42/mpkg-registry">mpkg-registry</a>
+  生态：<a href="https://github.com/lilyco-42/lystack">lystack</a>（协议与 spec）·
+  <a href="https://github.com/lilyco-42/cache-node">cache-node</a>（节点网格：HTTP + WebRTC P2P）·
+  <a href="https://github.com/lilyco-42/lly">lly</a>（工具包）·
+  <a href="https://github.com/lilyco-42/lilyco">lilyco</a>（四端框架）·
+  信令：lain42.top/signal ·
+  <a href="https://github.com/lilyco-42/mpkg-registry">registry 源</a>
 </footer>
 <script>
 const REPO = "lilyco-42/mpkg-registry";
@@ -50,13 +106,18 @@ async function load() {
     const j = await r.json();
     const idx = JSON.parse(b64ToUtf8(j.content));
     const list = document.getElementById("list");
-    if (!idx.packages.length) { list.innerHTML = '<div class="err">市场还是空的 — 发布第一个记忆包吧</div>'; return; }
-    idx.packages.sort(function (a, b) { return (b.attestations || 0) - (a.attestations || 0); });
-    list.innerHTML = idx.packages.map(function (p) {
+    const pkgs = idx.packages;
+    document.getElementById("st-pkg").textContent = pkgs.length;
+    document.getElementById("st-att").textContent = pkgs.reduce(function (s, p) { return s + (p.attestations || 0); }, 0);
+    const tot = pkgs.reduce(function (s, p) { return s + (p.size || 0); }, 0);
+    document.getElementById("st-size").textContent = (tot / 1024).toFixed(0) + " KB";
+    if (!pkgs.length) { list.innerHTML = '<div class="err">市场还是空的 — 发布第一个记忆包吧</div>'; return; }
+    pkgs.sort(function (a, b) { return (b.attestations || 0) - (a.attestations || 0); });
+    list.innerHTML = pkgs.map(function (p) {
       const cmd = "mpkg install " + p.name + " -r " + REPO;
       const tags = (p.tags || []).map(function (t) { return '<span class="tag">#' + t + "</span>"; }).join("");
       return '<div class="card">' +
-        '<h2><a href="https://github.com/' + REPO + '/tree/main/' + p.file + '" target="_blank">' + p.name + '</a> <span style="color:var(--dim);font-size:.8rem">@' + p.version + '</span></h2>' +
+        '<h3><a href="https://github.com/' + REPO + '/tree/main/' + p.file + '" target="_blank">' + p.name + '</a> <span style="color:var(--dim);font-size:.8rem">@' + p.version + '</span></h3>' +
         '<div class="meta">' +
         '<span class="badge">id ' + p.id.slice(7, 19) + '</span>' +
         '<span class="badge ok">attest ' + (p.attestations || 0) + '</span>' +
