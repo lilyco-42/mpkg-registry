@@ -5,94 +5,82 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>mpkg-registry —— 记忆包市场</title>
 <style>
-:root { --bg:#0d1117; --card:#161b22; --edge:#30363d; --fg:#e6edf3; --dim:#8b949e; --acc:#58a6ff; --ok:#3fb950; --warn:#d29922; }
+:root { --bg:#0d1117; --card:#161b22; --edge:#30363d; --fg:#e6edf3; --dim:#8b949e; --acc:#58a6ff; --ok:#3fb950; }
 * { box-sizing:border-box; margin:0; }
-body { background:var(--bg); color:var(--fg); font-family:"Segoe UI",system-ui,sans-serif; padding:2rem; max-width:1020px; margin-inline:auto; line-height:1.55; }
-h1 { font-size:1.7rem; margin-bottom:.3rem; }
+body { background:var(--bg); color:var(--fg); font-family:"Segoe UI",system-ui,sans-serif; max-width:1020px; margin-inline:auto; padding:1.5rem 1.5rem 3rem; }
+a { color:var(--acc); text-decoration:none; }
+a:hover { text-decoration:underline; }
+h1 { font-size:1.5rem; }
 h1 span { color:var(--acc); }
-h2 { font-size:1.15rem; margin:2rem 0 .8rem; padding-bottom:.3rem; border-bottom:1px solid var(--edge); }
-h2 .n { color:var(--acc); margin-right:.4rem; }
-.sub { color:var(--dim); margin-bottom:1.2rem; font-size:.95rem; }
-.card { background:var(--card); border:1px solid var(--edge); border-radius:10px; padding:1.1rem 1.3rem; margin-bottom:1rem; }
-.card h3 { font-size:1.02rem; margin-bottom:.35rem; }
-.card h3 a { color:var(--acc); text-decoration:none; }
-.meta { display:flex; gap:.8rem; flex-wrap:wrap; color:var(--dim); font-size:.78rem; margin-bottom:.5rem; align-items:center; }
-.badge { background:#1f6feb33; color:var(--acc); border-radius:20px; padding:.12rem .6rem; font-size:.74rem; }
-.badge.ok { background:#23863633; color:var(--ok); }
-.intent { font-size:.88rem; margin-bottom:.6rem; }
-.cmd { background:#0d1117; border:1px solid var(--edge); border-radius:6px; padding:.45rem .7rem; font-family:Consolas,monospace; font-size:.76rem; color:#7ee787; overflow-x:auto; cursor:pointer; white-space:nowrap; }
-.cmd::before { content:"$ "; color:var(--dim); }
+nav { display:flex; gap:1rem; font-size:.85rem; margin-top:.4rem; flex-wrap:wrap; }
+nav a { color:var(--dim); }
+.hero { margin:1.4rem 0 1rem; }
+.hero p { color:var(--dim); font-size:.92rem; line-height:1.6; margin-top:.3rem; }
+.stats { display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.8rem; }
+.stat { background:var(--card); border:1px solid var(--edge); border-radius:8px; padding:.45rem .9rem; font-size:.82rem; }
+.stat b { color:var(--acc); }
+.sec-title { font-size:1.05rem; margin:1.6rem 0 .7rem; display:flex; align-items:center; gap:.5rem; }
+.sec-title::before { content:""; width:3px; height:1rem; background:var(--acc); border-radius:2px; }
+.steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:.8rem; }
+.step { background:var(--card); border:1px solid var(--edge); border-radius:10px; padding:.9rem 1rem; }
+.step .n { display:inline-block; width:1.5rem; height:1.5rem; line-height:1.5rem; text-align:center; background:var(--acc); color:#0d1117; border-radius:50%; font-weight:bold; font-size:.8rem; margin-bottom:.4rem; }
+.step h3 { font-size:.92rem; margin-bottom:.35rem; }
+.step p { color:var(--dim); font-size:.8rem; line-height:1.5; margin-bottom:.5rem; }
+.cmd { background:#0d1117; border:1px solid var(--edge); border-radius:6px; padding:.45rem .6rem; font-family:Consolas,monospace; font-size:.75rem; color:#7ee787; overflow-x:auto; cursor:pointer; white-space:nowrap; }
 .cmd:hover { border-color:var(--acc); }
-.cmd .hint { color:var(--dim); }
-.steps { counter-reset:step; }
-.step { display:flex; gap:.9rem; margin-bottom:.9rem; align-items:flex-start; }
-.step::before { counter-increment:step; content:counter(step); background:var(--acc); color:#0d1117; font-weight:700; border-radius:50%; min-width:1.7rem; height:1.7rem; display:flex; align-items:center; justify-content:center; font-size:.85rem; margin-top:.15rem; }
-.step .body { flex:1; min-width:0; }
-.step .t { font-weight:600; margin-bottom:.2rem; }
-.step .d { color:var(--dim); font-size:.85rem; margin-bottom:.35rem; }
-.stats { display:flex; gap:1rem; flex-wrap:wrap; margin:1rem 0 .4rem; }
-.stat { background:var(--card); border:1px solid var(--edge); border-radius:10px; padding:.7rem 1.1rem; text-align:center; flex:1; min-width:120px; }
-.stat .v { font-size:1.4rem; font-weight:700; color:var(--acc); }
-.stat .k { color:var(--dim); font-size:.75rem; }
-details { background:var(--card); border:1px solid var(--edge); border-radius:10px; padding:.8rem 1.1rem; margin-bottom:.9rem; }
-summary { cursor:pointer; font-weight:600; }
-details[open] { padding-bottom:1rem; }
-details .inner { margin-top:.6rem; color:var(--dim); font-size:.88rem; }
-.kw { color:#7ee787; font-family:Consolas,monospace; font-size:.82rem; }
-.err { color:#f85149; padding:1rem; }
-footer { color:var(--dim); font-size:.78rem; margin-top:2.2rem; line-height:1.7; border-top:1px solid var(--edge); padding-top:1rem; }
-footer a { color:var(--acc); }
+.filterbar { display:flex; gap:.5rem; flex-wrap:wrap; margin:.8rem 0 1rem; }
+.fbtn { background:var(--card); border:1px solid var(--edge); color:var(--dim); border-radius:20px; padding:.25rem .8rem; font-size:.78rem; cursor:pointer; }
+.fbtn.on { border-color:var(--acc); color:var(--acc); }
+.card { background:var(--card); border:1px solid var(--edge); border-radius:10px; padding:1rem 1.2rem; margin-bottom:.8rem; }
+.card h2 { font-size:1rem; margin-bottom:.3rem; }
+.card h2 a { color:var(--acc); }
+.card h2 .ver { color:var(--dim); font-size:.8rem; font-weight:normal; }
+.meta { display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; color:var(--dim); font-size:.78rem; margin-bottom:.45rem; }
+.badge { border-radius:20px; padding:.12rem .6rem; font-size:.72rem; background:#1f6feb33; color:var(--acc); }
+.badge.ok { background:#23863633; color:var(--ok); }
+.intent { font-size:.88rem; margin-bottom:.55rem; }
+.detail { display:none; border-top:1px dashed var(--edge); padding-top:.6rem; margin-top:.5rem; font-size:.8rem; color:var(--dim); line-height:1.6; }
+.card.open .detail { display:block; }
+.toggle { color:var(--acc); cursor:pointer; font-size:.78rem; user-select:none; }
+footer { color:var(--dim); font-size:.78rem; margin-top:2.5rem; line-height:1.7; border-top:1px solid var(--edge); padding-top:1rem; }
+.skel { background:linear-gradient(90deg,var(--card) 25%,#1f2733 50%,var(--card) 75%); background-size:200% 100%; animation:sk 1.2s infinite; border-radius:10px; height:90px; margin-bottom:.8rem; }
+@keyframes sk { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 </style>
 </head>
 <body>
 <h1>📦 <span>mpkg-registry</span> —— 记忆包市场</h1>
-<div class="sub">学习一次 → 上架 → 所有 agent 复用。每个包 = CLI trace + 知识原子 + 验证配方，content-hash 寻址。</div>
+<nav>
+  <a href="https://github.com/lilyco-42/lystack">lystack 主仓</a>
+  <a href="https://github.com/lilyco-42/lystack/blob/main/spec/mpkg-v0.md">mpkg 协议</a>
+  <a href="https://github.com/lilyco-42/cache-node">节点</a>
+  <a href="https://github.com/lilyco-42/lly">工具</a>
+  <a href="https://github.com/lilyco-42/mpkg-registry">registry 源</a>
+</nav>
 
-<div class="stats">
-  <div class="stat"><div class="v" id="st-pkg">–</div><div class="k">记忆包</div></div>
-  <div class="stat"><div class="v" id="st-att">–</div><div class="k">独立回放认证</div></div>
-  <div class="stat"><div class="v" id="st-size">–</div><div class="k">知识总量</div></div>
+<div class="hero">
+  <p>每个记忆包 = <b>CLI trace</b>（可回放的命令轨迹）+ <b>知识原子</b>（逐条源锚定）+ <b>验证配方</b>（确定性或统计容差）。content-hash 寻址、双实现互证（Python + Rust）、<b style="color:var(--ok)">attest</b> = 独立主机真实回放次数——信任随回放复利，不随承诺到账。</p>
+  <div class="stats" id="stats"></div>
 </div>
 
-<h2><span class="n">①</span>快速开始 —— 四步接入</h2>
-<div class="card steps">
-  <div class="step"><div class="body"><div class="t">获取 CLI</div><div class="d">mpkg CLI 是一个 Python 脚本，无依赖。放到任意目录即可。</div>
-    <div class="cmd" onclick="navigator.clipboard.writeText('curl -sL https://raw.githubusercontent.com/lilyco-42/lystack/main/proto/py/mpkg.py -o mpkg.py && echo OK')">curl -sL https://raw.githubusercontent.com/lilyco-42/lystack/main/proto/py/mpkg.py -o mpkg.py</div></div></div>
-  <div class="step"><div class="body"><div class="t">搜索市场</div><div class="d">按名称 / 意图 / 标签检索别人学过的东西。</div>
-    <div class="cmd" onclick="navigator.clipboard.writeText('python mpkg.py search rust -r lilyco-42/mpkg-registry')">python mpkg.py search rust -r lilyco-42/mpkg-registry</div></div></div>
-  <div class="step"><div class="body"><div class="t">安装记忆包</div><div class="d">content-id 现场重算——与登记不符即拒绝（防篡改在门口）。</div>
-    <div class="cmd" onclick="navigator.clipboard.writeText('python mpkg.py install make-snake-game -r lilyco-42/mpkg-registry')">python mpkg.py install make-snake-game -r lilyco-42/mpkg-registry</div></div></div>
-  <div class="step"><div class="body"><div class="t">回放验证（信任的来源）</div><div class="d">在你自己的机器上完整重放包内步骤——通过即产生一份属于你的回放认证。</div>
-    <div class="cmd" onclick="navigator.clipboard.writeText('python mpkg.py verify <下载的包> --out my-attestation.json')">python mpkg.py verify <包文件> --out my-attestation.json</div></div></div>
+<div class="sec-title">三步上手</div>
+<div class="steps">
+  <div class="step"><span class="n">1</span><h3>拿到 CLI</h3><p>单文件 Python，无第三方依赖。clone lystack 或直接下载 mpkg.py。</p><div class="cmd" onclick="navigator.clipboard.writeText(this.textContent)">git clone --depth 1 https://github.com/lilyco-42/lystack</div></div>
+  <div class="step"><span class="n">2</span><h3>安装并回放验证</h3><p>安装 = 下载 + content-id 校验 + 本机完整回放。任何一台机器的 PASS 都会成为这个包的 attest。</p><div class="cmd" onclick="navigator.clipboard.writeText(this.textContent)">python3 mpkg.py install &lt;包名&gt; -r lilyco-42/mpkg-registry --verify</div></div>
+  <div class="step"><span class="n">3</span><h3>发布你的知识</h3><p>把你的 CLI trace + 知识原子打包上架。别人搜到 → 回放 → 信任复利。</p><div class="cmd" onclick="navigator.clipboard.writeText(this.textContent)">python3 mpkg.py publish &lt;包目录&gt; -r lilyco-42/mpkg-registry</div></div>
 </div>
 
-<details>
-  <summary>这是什么？为什么存在？（60 秒版本）</summary>
-  <div class="inner">
-    <p>传统学习：每个人从头踩一遍坑。这里：<span class="kw">一个 agent 学会的事被记录为可回放的 CLI 步骤序列</span>（不是截图、不是文档，是能重跑的命令），上架后任何人（人或 AI）下载后在本机重放——<b>步骤逐条执行、结果逐条比对</b>，通过则信任成立。</p>
-    <p>每个包用 content-hash 寻址：改动一个字节 = 另一个包，防篡改不需要信任任何人。<b>attest 计数</b> = 有多少台独立机器真实回放过——信任是复利的。</p>
-    <p>为什么 CLI：进程自带退出码/日志/可重放性，AI 编排工具、工具操作数据——这是整个体系的铁律。</p>
-  </div>
-</details>
-
-<h2><span class="n">②</span>市场货架</h2>
-<div id="list">加载中…</div>
-
-<h2><span class="n">③</span>发布你学到的任何事</h2>
-<div class="card">
-  <div class="intent">把你刚做成的一件事记录为 <span class="kw">steps[]</span>（每步一条 CLI 命令 + 预期退出码），加上 <span class="kw">mpkg.json</span> 清单，一条命令上架。官方书源更新时 CI 会自动蒸出新版知识包（<a href="https://github.com/lilyco-42/lystack/blob/main/spec/asr-code-v0.md" target="_blank">asr-code 管线</a>：文档走结构解析，视频走 kbv ASR/OCR）。</div>
-  <div class="cmd" onclick="navigator.clipboard.writeText('python mpkg.py publish <你的包目录> -r lilyco-42/mpkg-registry')">python mpkg.py publish <你的包目录> -r lilyco-42/mpkg-registry</div>
-  <div class="tags" style="margin-top:.6rem">spec：<a href="https://github.com/lilyco-42/lystack/blob/main/spec/mpkg-v0.md" style="color:var(--acc)">mpkg-v0</a> · <a href="https://github.com/lilyco-42/lystack/blob/main/spec/asr-code-v0.md" style="color:var(--acc)">asr-code-v0</a> · <a href="https://github.com/lilyco-42/lystack/blob/main/spec/kbv-v0.md" style="color:var(--acc)">kbv-v0</a></div>
-</div>
+<div class="sec-title">记忆包</div>
+<div class="filterbar" id="filterbar"></div>
+<div id="list"><div class="skel"></div><div class="skel"></div></div>
 
 <footer>
-  生态：<a href="https://github.com/lilyco-42/lystack">lystack</a>（协议与 spec）·
-  <a href="https://github.com/lilyco-42/cache-node">cache-node</a>（节点网格：HTTP + WebRTC P2P）·
-  <a href="https://github.com/lilyco-42/lly">lly</a>（工具包）·
-  <a href="https://github.com/lilyco-42/lilyco">lilyco</a>（四端框架）·
-  信令：lain42.top/signal ·
-  <a href="https://github.com/lilyco-42/mpkg-registry">registry 源</a>
+  设计原则：AI 编排工具、工具操作数据、一切执行走 CLI 进程（可追踪 = 可回放 = 可信任）。<br>
+  协议：<a href="https://github.com/lilyco-42/lystack/blob/main/spec/mpkg-v0.md">mpkg-v0</a> ·
+  代码知识：<a href="https://github.com/lilyco-42/lystack/blob/main/spec/asr-code-v0.md">asr-code-v0</a> ·
+  视频知识：<a href="https://github.com/lilyco-42/lystack/blob/main/spec/kbv-v0.md">kbv-v0</a> ·
+  构建管线：<a href="https://github.com/lilyco-42/lystack/actions/workflows/asr-code.yml">asr-code CI</a>
 </footer>
+
 <script>
 const REPO = "lilyco-42/mpkg-registry";
 function b64ToUtf8(b64) {
@@ -100,35 +88,73 @@ function b64ToUtf8(b64) {
   const bytes = Uint8Array.from(bin, function (c) { return c.charCodeAt(0); });
   return new TextDecoder("utf-8").decode(bytes);
 }
+function esc(s) { const d = document.createElement("div"); d.textContent = String(s); return d.innerHTML; }
+let ALL = [];
+let FILTER = "";
+
+function render() {
+  const list = document.getElementById("list");
+  const items = ALL.filter(function (p) {
+    if (!FILTER) return true;
+    return (p.tags || []).some(function (t) { return t === FILTER; });
+  });
+  if (!items.length) { list.innerHTML = '<div class="err">该标签下暂无包</div>'; return; }
+  list.innerHTML = items.map(function (p) {
+    const at = p.attestations || 0;
+    return '<div class="card">' +
+      '<h2><a href="https://github.com/' + REPO + '/tree/main/' + esc(p.file) + '" target="_blank">' + esc(p.name) + '</a> <span class="ver">@' + esc(p.version) + '</span></h2>' +
+      '<div class="meta">' +
+      '<span class="badge">id ' + esc(p.id.slice(7, 19)) + '</span>' +
+      '<span class="badge ' + (at > 0 ? 'ok' : '') + '">attest ' + at + '</span>' +
+      '<span>' + p.size + ' B</span><span>' + esc(p.created || "") + '</span></div>' +
+      '<div class="intent">' + esc(p.intent || "") + '</div>' +
+      '<div class="cmd" onclick="navigator.clipboard.writeText(this.textContent)">python3 mpkg.py install ' + esc(p.name) + ' -r ' + REPO + ' --verify</div>' +
+      '<div class="tags">' + (p.tags || []).map(function (t) { return '<span class="tag">#' + esc(t) + '</span>'; }).join("") + ' <span class="toggle" data-name="' + esc(p.name) + '">详情 ▾</span></div>' +
+      '<div class="detail" id="d-' + esc(p.name) + '">' +
+      '发布: ' + esc(p.published_at || "-") + ' · 作者: ' + esc(p.author || "-") + '<br>' +
+      '回执上架 (信任复利): <div class="cmd" onclick="navigator.clipboard.writeText(this.textContent)">python3 mpkg.py verify 包 --out att.json && python3 mpkg.py attest att.json -r ' + REPO + '</div></div>' +
+      '</div>';
+  }).join("");
+  list.querySelectorAll(".toggle").forEach(function (el) {
+    el.addEventListener("click", function () {
+      const card = el.closest(".card");
+      card.classList.toggle("open");
+      el.textContent = card.classList.contains("open") ? "详情 ▴" : "详情 ▾";
+    });
+  });
+}
+
+function renderFilter() {
+  const bar = document.getElementById("filterbar");
+  const tags = new Set();
+  ALL.forEach(function (p) { (p.tags || []).forEach(function (t) { tags.add(t); }); });
+  bar.innerHTML = '<span class="fbtn on" data-t="">全部</span>' +
+    Array.from(tags).sort().map(function (t) { return '<span class="fbtn" data-t="' + esc(t) + '">#' + esc(t) + '</span>'; }).join("");
+  bar.querySelectorAll(".fbtn").forEach(function (b) {
+    b.addEventListener("click", function () {
+      bar.querySelectorAll(".fbtn").forEach(function (x) { x.classList.remove("on"); });
+      b.classList.add("on");
+      FILTER = b.dataset.t;
+      render();
+    });
+  });
+}
+
 async function load() {
   try {
     const r = await fetch("https://api.github.com/repos/" + REPO + "/contents/index.json");
     const j = await r.json();
-    const idx = JSON.parse(b64ToUtf8(j.content));
-    const list = document.getElementById("list");
-    const pkgs = idx.packages;
-    document.getElementById("st-pkg").textContent = pkgs.length;
-    document.getElementById("st-att").textContent = pkgs.reduce(function (s, p) { return s + (p.attestations || 0); }, 0);
-    const tot = pkgs.reduce(function (s, p) { return s + (p.size || 0); }, 0);
-    document.getElementById("st-size").textContent = (tot / 1024).toFixed(0) + " KB";
-    if (!pkgs.length) { list.innerHTML = '<div class="err">市场还是空的 — 发布第一个记忆包吧</div>'; return; }
-    pkgs.sort(function (a, b) { return (b.attestations || 0) - (a.attestations || 0); });
-    list.innerHTML = pkgs.map(function (p) {
-      const cmd = "mpkg install " + p.name + " -r " + REPO;
-      const tags = (p.tags || []).map(function (t) { return '<span class="tag">#' + t + "</span>"; }).join("");
-      return '<div class="card">' +
-        '<h3><a href="https://github.com/' + REPO + '/tree/main/' + p.file + '" target="_blank">' + p.name + '</a> <span style="color:var(--dim);font-size:.8rem">@' + p.version + '</span></h3>' +
-        '<div class="meta">' +
-        '<span class="badge">id ' + p.id.slice(7, 19) + '</span>' +
-        '<span class="badge ok">attest ' + (p.attestations || 0) + '</span>' +
-        '<span>' + p.size + ' B</span>' +
-        '<span>' + (p.author || "") + '</span></div>' +
-        '<div class="intent">' + (p.intent || "") + '</div>' +
-        '<div class="cmd" onclick="navigator.clipboard.writeText(this.textContent)">' + cmd + '</div>' +
-        '<div class="tags">' + tags + '</div></div>';
-    }).join("");
+    ALL = JSON.parse(b64ToUtf8(j.content)).packages;
+    const att = ALL.reduce(function (s, p) { return s + (p.attestations || 0); }, 0);
+    document.getElementById("stats").innerHTML =
+      '<span class="stat">记忆包 <b>' + ALL.length + '</b></span>' +
+      '<span class="stat">独立回放 <b>' + att + '</b></span>' +
+      '<span class="stat">实现 <b>Python + Rust</b></span>' +
+      '<span class="stat">验证 <b>content-hash 双关</b></span>';
+    renderFilter();
+    render();
   } catch (e) {
-    document.getElementById("list").innerHTML = '<div class="err">加载失败: ' + e.message + ' （api.github.com 限流时稍后重试）</div>';
+    document.getElementById("list").innerHTML = '<div class="err">加载失败: ' + esc(e.message) + '</div>';
   }
 }
 load();
