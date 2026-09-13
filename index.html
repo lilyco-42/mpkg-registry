@@ -32,39 +32,42 @@ footer a { color:var(--acc); }
 <div class="sub">学习一次 → 上架 → 所有 agent 复用。每个包 = CLI trace + 知识原子 + 验证配方，content-hash 寻址；<b>attest</b> = 独立主机真实回放次数（信任复利）。</div>
 <div id="list">加载中…</div>
 <footer>
-安装 CLI：源码 <a href="https://github.com/lilyco-42/lystack/tree/main/proto/py">lystack/proto/py/mpkg.py</a>，复制卡片上的命令即可安装。<br>
+  安装 CLI：源码 <a href="https://github.com/lilyco-42/lystack/tree/main/proto/py">lystack/proto/py/mpkg.py</a>，复制卡片上的命令即可安装。<br>
   协议 spec：<a href="https://github.com/lilyco-42/lystack/blob/main/spec/mpkg-v0.md">mpkg-v0</a> ·
   节点网格：<a href="https://github.com/lilyco-42/cache-node">cache-node</a> ·
   registry 源：<a href="https://github.com/lilyco-42/mpkg-registry">mpkg-registry</a>
 </footer>
 <script>
 const REPO = "lilyco-42/mpkg-registry";
+function b64ToUtf8(b64) {
+  const bin = atob(b64);
+  const bytes = Uint8Array.from(bin, function (c) { return c.charCodeAt(0); });
+  return new TextDecoder("utf-8").decode(bytes);
+}
 async function load() {
   try {
-    const r = await fetch(`https://api.github.com/repos/${REPO}/contents/index.json`);
+    const r = await fetch("https://api.github.com/repos/" + REPO + "/contents/index.json");
     const j = await r.json();
-    const bin = atob(j.content.replace(/
-/g, ""));
-    const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
-    const idx = JSON.parse(new TextDecoder("utf-8").decode(bytes));
+    const idx = JSON.parse(b64ToUtf8(j.content));
     const list = document.getElementById("list");
     if (!idx.packages.length) { list.innerHTML = '<div class="err">市场还是空的 — 发布第一个记忆包吧</div>'; return; }
-    idx.packages.sort((a,b) => (b.attestations||0) - (a.attestations||0));
-    list.innerHTML = idx.packages.map(p => `
-      <div class="card">
-        <h2><a href="https://github.com/${REPO}/tree/main/${p.file}" target="_blank">${p.name}</a> <span style="color:var(--dim);font-size:.8rem">@${p.version}</span></h2>
-        <div class="meta">
-          <span class="badge">id ${p.id.slice(7,19)}</span>
-          <span class="badge ok">attest ${p.attestations||0}</span>
-          <span>${p.size} B</span>
-          <span>${p.author||""}</span>
-        </div>
-        <div class="intent">${p.intent||""}</div>
-        <div class="cmd" onclick="navigator.clipboard.writeText(this.textContent)">mpkg install ${p.name} -r ${REPO}</div>
-        <div class="tags">${(p.tags||[]).map(t=>`<span class="tag">#${t}</span>`).join("")}</div>
-      </div>`).join("");
+    idx.packages.sort(function (a, b) { return (b.attestations || 0) - (a.attestations || 0); });
+    list.innerHTML = idx.packages.map(function (p) {
+      const cmd = "mpkg install " + p.name + " -r " + REPO;
+      const tags = (p.tags || []).map(function (t) { return '<span class="tag">#' + t + "</span>"; }).join("");
+      return '<div class="card">' +
+        '<h2><a href="https://github.com/' + REPO + '/tree/main/' + p.file + '" target="_blank">' + p.name + '</a> <span style="color:var(--dim);font-size:.8rem">@' + p.version + '</span></h2>' +
+        '<div class="meta">' +
+        '<span class="badge">id ' + p.id.slice(7, 19) + '</span>' +
+        '<span class="badge ok">attest ' + (p.attestations || 0) + '</span>' +
+        '<span>' + p.size + ' B</span>' +
+        '<span>' + (p.author || "") + '</span></div>' +
+        '<div class="intent">' + (p.intent || "") + '</div>' +
+        '<div class="cmd" onclick="navigator.clipboard.writeText(this.textContent)">' + cmd + '</div>' +
+        '<div class="tags">' + tags + '</div></div>';
+    }).join("");
   } catch (e) {
-    document.getElementById("list").innerHTML = `<div class="err">加载失败: ${e.message} （api.github.com 限流时稍后重试）</div>`;
+    document.getElementById("list").innerHTML = '<div class="err">加载失败: ' + e.message + ' （api.github.com 限流时稍后重试）</div>';
   }
 }
 load();
