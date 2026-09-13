@@ -1,0 +1,11 @@
+{
+  "id": "sha256:681db83d8b454852e03618628cd7fb5c4e70e6b5f9a2335863f04c075c8809e5",
+  "name": "asr-code-rust-book",
+  "ok": true,
+  "replayed_at": "2026-09-13T15:38:00+0800",
+  "host_os": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.15",
+  "shell": "C:\\Program Files\\Git\\usr\\bin\\bash.EXE",
+  "steps": 3,
+  "verify": 1
+}
