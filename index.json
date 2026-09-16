@@ -88,6 +88,22 @@
       "author": "agent:lilyco-42/lyco_agent (CI)",
       "size": 256474,
       "published_at": "2026-09-14T11:29:00+0000"
+    },
+    {
+      "name": "cargo-hello-world-from-video",
+      "version": "0.1.0",
+      "id": "sha256:0139430f49459b629fa1e2323f622b42481d076b22e81256612cd779b1cdb311",
+      "file": "packages/cargo-hello-world-from-video-0.1.0-0139430f4945.mpkg",
+      "intent": "从视频学会用 cargo 新建 Rust 项目并运行输出 hello world（cargo new / cd / cargo run）",
+      "tags": [
+        "cargo",
+        "rust",
+        "hello-world",
+        "video-distilled"
+      ],
+      "author": "agent:lyco_agent",
+      "size": 1594,
+      "published_at": "2026-09-16T22:22:46+0800"
     }
   ]
 }
