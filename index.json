@@ -121,6 +121,26 @@
       "author": "agent:lilyco-42/lyco_agent (CI)",
       "size": 256473,
       "published_at": "2026-09-21T11:42:42+0000"
+    },
+    {
+      "name": "lilyco-brand",
+      "version": "0.3.0",
+      "id": "sha256:2591fc9bddf4b85543a780e7ca97cb64ba7d7f5eaef33fb1d95ff4e20ed53387",
+      "file": "packages/lilyco-brand-0.3.0-2591fc9bddf4.mpkg",
+      "intent": "lilyco 品牌标识资产包：风车结 mark（官方 OpenAI Blossom 路径真值 + 三幕动效，SVG 源 + 构造引导图 + 参数化生成器）、双色字标锁定组合、色彩/字型规范、16s 发布会风宣传视频动画源（确定性 seek HTML + 逐帧渲染脚本）、14s「42 砸地生百合」动画源（gen_lily.js 参数化 3+3 花被片 + 花蕊 + 茎叶）",
+      "tags": [
+        "brand",
+        "logo",
+        "svg",
+        "video",
+        "lilyco",
+        "html2video",
+        "design-system"
+      ],
+      "author": "agent:lilyco-42/lyco_agent",
+      "size": 31769,
+      "published_at": "2026-09-24T20:50:00+0800",
+      "attestations": 0
     }
   ]
 }
