@@ -1,0 +1,12 @@
+# index.json 是确定性重建产物：blob 必须是 LF，否则 Windows 工作副本会让
+# `tools/reindex.py --check` 产生假红（脚本已归一化 CRLF 兜底，这里从源头钉死）。
+*.json text eol=lf
+*.py   text eol=lf
+*.md   text eol=lf
+*.html text eol=lf
+*.sh   text eol=lf
+# 包文件与图片是二进制，禁止任何换行/编码转换
+*.mpkg binary
+*.png  binary
+*.jpg  binary
+*.ico  binary

@@ -1,0 +1,36 @@
+name: Registry Integrity
+
+# index.json 是**确定性重建产物**（tools/reindex.py），不是手工维护的账本。
+# 这里把它变成必经之路：任何人只改 packages/ 或 attestations/ 而忘了重建 index，
+# 或者手改 index 让内容-id / 回执计数漂移，CI 立刻红。
+#
+# 为什么值得一条独立 workflow：注册表是整个 P0 链（lilyco → lyco_agent → mpkg →
+# cache-node verify → registry）的信任落点。「市场说什么」与「盘上是什么」一旦分叉，
+# 下游 install 的 content-id 门禁就成了摆设（它挡的是篡改，挡不住记错账）。
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  reindex-check:
+    name: reindex --check（契约源自检 + index 一致性）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      # 1) 契约源自检：GOLDEN 三例 canon 幂等 + content-id 逐字节（脚本内建，失败退出码 3）
+      # 2) 一致性门禁：index.json 必须逐字符等于 f(packages/, attestations/)（不一致退出码 2）
+      - name: contract self-test + index drift gate
+        run: python3 tools/reindex.py --check
+
+      - name: 失败时给出可复制的修复指令
+        if: failure()
+        run: |
+          echo "::error::index.json 与盘上实算不一致。请在本地运行：python3 tools/reindex.py 后 review 并提交 index.json。"
