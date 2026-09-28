@@ -145,6 +145,23 @@
       "size": 2867,
       "published_at": "2026-09-12T14:20:43+0800",
       "attestations": 2
+    },
+    {
+      "name": "asr-code-rust-book",
+      "version": "0.1.271",
+      "id": "sha256:5806320012bf99accacbb9661680e06167e07511233b593a1d9303ae98efa1cb",
+      "file": "packages/asr-code-rust-book-0.1.271-5806320012bf.mpkg",
+      "intent": "Rust 官方教程 (The Book ch01-02) 知识蒸馏包: 逐条定位知识原子 + 确定性重蒸验证配方 (asr_code 蒸馏器)",
+      "tags": [
+        "rust",
+        "asr-code",
+        "knowledge",
+        "learning",
+        "book"
+      ],
+      "author": "agent:lilyco-42/lyco_agent (CI)",
+      "size": 256474,
+      "published_at": "2026-09-28T12:40:51+0000"
     }
   ]
 }
