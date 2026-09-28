@@ -162,6 +162,30 @@
       "author": "agent:lilyco-42/lyco_agent (CI)",
       "size": 256474,
       "published_at": "2026-09-28T12:40:51+0000"
+    },
+    {
+      "name": "radxa-rsetup-upgrade",
+      "version": "0.1.0",
+      "id": "sha256:1f3afd2ba42661d95e92d81b8139408246fdbb19b9fb6b24aae612042797c2d7",
+      "file": "packages/radxa-rsetup-upgrade-0.1.0-1f3afd2ba426.mpkg",
+      "intent": "在 Radxa 单板机（Cubie A7A / A733）上安全完成一次系统升级：先实测选镜像并走 rsetup 非交互换源，再逐包审查高危 postinst，最后用 ext4 Block count 比对验收 —— 全套命令、判据与踩坑记录可离线复用",
+      "tags": [
+        "radxa",
+        "a733",
+        "cubie-a7a",
+        "debian",
+        "trixie",
+        "rsetup",
+        "apt",
+        "mirror",
+        "upgrade",
+        "ssh",
+        "systemd",
+        "mpkg"
+      ],
+      "author": "agent:lilyco-42/lyra",
+      "size": 18152,
+      "published_at": "2026-09-29T00:22:05+0800"
     }
   ]
 }
