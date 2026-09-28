@@ -4,6 +4,37 @@
   "packages": [
     {
       "name": "radxa-rsetup-upgrade",
+      "version": "0.2.0",
+      "id": "sha256:5aecfda99f95982baaa04255a156ee25506df4fb8b4df1885d2d693c19b157b3",
+      "file": "packages/radxa-rsetup-upgrade-0.2.0-5aecfda99f95.mpkg",
+      "intent": "在 Radxa 单板机（Cubie A7A / A733，Debian 13 trixie）上安全完成一次系统升级并收尾：实测选镜像 → rsetup 非交互换源 → 逐包审查高危 postinst → 升级 + ext4 几何验收 → 时区 / failed 单元 / kept-back 归因 → 内核换版本并做写入路径验收与重启前闸门。全套命令、判据与踩坑记录可离线复用",
+      "tags": [
+        "radxa",
+        "a733",
+        "cubie-a7a",
+        "debian",
+        "trixie",
+        "rsetup",
+        "apt",
+        "mirror",
+        "upgrade",
+        "ssh",
+        "systemd",
+        "ext4",
+        "e2fsck",
+        "kernel",
+        "extlinux",
+        "rtc",
+        "dpkg",
+        "mpkg"
+      ],
+      "author": "agent:lilyco-42/lyra",
+      "size": 46335,
+      "published_at": "2026-09-29T00:54:46+0800",
+      "attestations": 0
+    },
+    {
+      "name": "radxa-rsetup-upgrade",
       "version": "0.1.0",
       "id": "sha256:1f3afd2ba42661d95e92d81b8139408246fdbb19b9fb6b24aae612042797c2d7",
       "file": "packages/radxa-rsetup-upgrade-0.1.0-1f3afd2ba426.mpkg",
