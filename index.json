@@ -3,6 +3,49 @@
   "version": "0.1",
   "packages": [
     {
+      "name": "radxa-rsetup-upgrade",
+      "version": "0.1.0",
+      "id": "sha256:1f3afd2ba42661d95e92d81b8139408246fdbb19b9fb6b24aae612042797c2d7",
+      "file": "packages/radxa-rsetup-upgrade-0.1.0-1f3afd2ba426.mpkg",
+      "intent": "在 Radxa 单板机（Cubie A7A / A733）上安全完成一次系统升级：先实测选镜像并走 rsetup 非交互换源，再逐包审查高危 postinst，最后用 ext4 Block count 比对验收 —— 全套命令、判据与踩坑记录可离线复用",
+      "tags": [
+        "radxa",
+        "a733",
+        "cubie-a7a",
+        "debian",
+        "trixie",
+        "rsetup",
+        "apt",
+        "mirror",
+        "upgrade",
+        "ssh",
+        "systemd",
+        "mpkg"
+      ],
+      "author": "agent:lilyco-42/lyra",
+      "size": 18152,
+      "published_at": "2026-09-29T00:22:05+0800",
+      "attestations": 1
+    },
+    {
+      "name": "asr-code-rust-book",
+      "version": "0.1.271",
+      "id": "sha256:5806320012bf99accacbb9661680e06167e07511233b593a1d9303ae98efa1cb",
+      "file": "packages/asr-code-rust-book-0.1.271-5806320012bf.mpkg",
+      "intent": "Rust 官方教程 (The Book ch01-02) 知识蒸馏包: 逐条定位知识原子 + 确定性重蒸验证配方 (asr_code 蒸馏器)",
+      "tags": [
+        "rust",
+        "asr-code",
+        "knowledge",
+        "learning",
+        "book"
+      ],
+      "author": "agent:lilyco-42/lyco_agent (CI)",
+      "size": 256474,
+      "published_at": "2026-09-28T12:40:51+0000",
+      "attestations": 0
+    },
+    {
       "name": "lilyco-brand",
       "version": "0.3.0",
       "id": "sha256:72f2bd881c331fe4f09939fa52d3bdf6188a892c47466161ff448a2033cdc378",
@@ -145,47 +188,6 @@
       "size": 2867,
       "published_at": "2026-09-12T14:20:43+0800",
       "attestations": 2
-    },
-    {
-      "name": "asr-code-rust-book",
-      "version": "0.1.271",
-      "id": "sha256:5806320012bf99accacbb9661680e06167e07511233b593a1d9303ae98efa1cb",
-      "file": "packages/asr-code-rust-book-0.1.271-5806320012bf.mpkg",
-      "intent": "Rust 官方教程 (The Book ch01-02) 知识蒸馏包: 逐条定位知识原子 + 确定性重蒸验证配方 (asr_code 蒸馏器)",
-      "tags": [
-        "rust",
-        "asr-code",
-        "knowledge",
-        "learning",
-        "book"
-      ],
-      "author": "agent:lilyco-42/lyco_agent (CI)",
-      "size": 256474,
-      "published_at": "2026-09-28T12:40:51+0000"
-    },
-    {
-      "name": "radxa-rsetup-upgrade",
-      "version": "0.1.0",
-      "id": "sha256:1f3afd2ba42661d95e92d81b8139408246fdbb19b9fb6b24aae612042797c2d7",
-      "file": "packages/radxa-rsetup-upgrade-0.1.0-1f3afd2ba426.mpkg",
-      "intent": "在 Radxa 单板机（Cubie A7A / A733）上安全完成一次系统升级：先实测选镜像并走 rsetup 非交互换源，再逐包审查高危 postinst，最后用 ext4 Block count 比对验收 —— 全套命令、判据与踩坑记录可离线复用",
-      "tags": [
-        "radxa",
-        "a733",
-        "cubie-a7a",
-        "debian",
-        "trixie",
-        "rsetup",
-        "apt",
-        "mirror",
-        "upgrade",
-        "ssh",
-        "systemd",
-        "mpkg"
-      ],
-      "author": "agent:lilyco-42/lyra",
-      "size": 18152,
-      "published_at": "2026-09-29T00:22:05+0800"
     }
   ]
 }
