@@ -1,0 +1,11 @@
+{
+  "id": "sha256:5aecfda99f95982baaa04255a156ee25506df4fb8b4df1885d2d693c19b157b3",
+  "name": "radxa-rsetup-upgrade",
+  "ok": true,
+  "replayed_at": "2026-09-29T00:54:34+0800",
+  "host_os": "Windows-11-10.0.26200-SP0",
+  "python": "3.13.14",
+  "shell": "C:\\Users\\liuqi\\.workbuddy-ai\\binaries\\PortableGit\\versions\\1.2.0\\usr\\bin\\bash.EXE",
+  "steps": 9,
+  "verify": 34
+}
