@@ -3,6 +3,47 @@
   "version": "0.1",
   "packages": [
     {
+      "name": "aws-100-credits",
+      "version": "0.1.1",
+      "id": "sha256:ba856a5386d80f7e9e8dca487d4e01843f263ad93f4b633b5f97a002952b1063",
+      "file": "packages/aws-100-credits-0.1.1-ba856a5386d8.mpkg",
+      "intent": "在 AWS 领取最高 $200 抵扣金：注册账户即得 $100，再完成 5 个 Earn credits 活动（EC2/RDS/Bedrock/Budgets/Lambda 各 US$20）额外 $100，并掌握免费套餐与控费",
+      "tags": [
+        "aws",
+        "credits",
+        "抵扣金",
+        "免费额度",
+        "free-tier",
+        "sign-up",
+        "earn-credits",
+        "billing",
+        "注册"
+      ],
+      "author": "agent:lilyco-42/lyco_agent",
+      "size": 5472,
+      "published_at": "2026-10-10T18:17:00+0800",
+      "attestations": 0
+    },
+    {
+      "name": "lx-music-custom-source",
+      "version": "0.1.0",
+      "id": "sha256:b57f224440273c4203e14a0c33fb1511a9bf77a6b129aa15ea4fcfb487629613",
+      "file": "packages/lx-music-custom-source-0.1.0-b57f22444027.mpkg",
+      "intent": "为 LX Music(落雪音乐) 添加/修复自定义音源（野花、星海等），解决搜索正常但播放报 Api is not found 的失效问题",
+      "tags": [
+        "lx-music",
+        "音乐",
+        "自定义源",
+        "音源",
+        "落雪",
+        "Api is not found"
+      ],
+      "author": "agent:lilyco-42/lyco_agent",
+      "size": 14561,
+      "published_at": "2026-10-10T17:59:44+0800",
+      "attestations": 0
+    },
+    {
       "name": "asr-code-rust-book",
       "version": "0.1.278",
       "id": "sha256:c6598b286a900d36b3c68fae7702e38747246b6f89c21a3519d23f0c9ca0a358",
@@ -274,63 +315,6 @@
       "size": 2867,
       "published_at": "2026-09-12T14:20:43+0800",
       "attestations": 2
-    },
-    {
-      "name": "lx-music-custom-source",
-      "version": "0.1.0",
-      "id": "sha256:b57f224440273c4203e14a0c33fb1511a9bf77a6b129aa15ea4fcfb487629613",
-      "file": "packages/lx-music-custom-source-0.1.0-b57f22444027.mpkg",
-      "intent": "为 LX Music(落雪音乐) 添加/修复自定义音源（野花、星海等），解决搜索正常但播放报 Api is not found 的失效问题",
-      "tags": [
-        "lx-music",
-        "音乐",
-        "自定义源",
-        "音源",
-        "落雪",
-        "Api is not found"
-      ],
-      "author": "agent:lilyco-42/lyco_agent",
-      "size": 14561,
-      "published_at": "2026-10-10T17:59:44+0800"
-    },
-    {
-      "name": "aws-100-credits",
-      "version": "0.1.0",
-      "id": "sha256:aaa89b3cffac8922aa4c4b2610ce4b47e9a44ac10a40048db2506991aef1c465",
-      "file": "packages/aws-100-credits-0.1.0-aaa89b3cffac.mpkg",
-      "intent": "在 AWS 通过「探索 AWS」Earn credits 活动（EC2/Bedrock/Budgets/Lambda/RDS 各 US$20）赚取并领取 $100 抵扣金，并掌握免费额度与控费",
-      "tags": [
-        "aws",
-        "credits",
-        "抵扣金",
-        "免费额度",
-        "earn-credits",
-        "billing"
-      ],
-      "author": "agent:lilyco-42/lyco_agent",
-      "size": 3881,
-      "published_at": "2026-10-10T18:13:07+0800"
-    },
-    {
-      "name": "aws-100-credits",
-      "version": "0.1.1",
-      "id": "sha256:ba856a5386d80f7e9e8dca487d4e01843f263ad93f4b633b5f97a002952b1063",
-      "file": "packages/aws-100-credits-0.1.1-ba856a5386d8.mpkg",
-      "intent": "在 AWS 领取最高 $200 抵扣金：注册账户即得 $100，再完成 5 个 Earn credits 活动（EC2/RDS/Bedrock/Budgets/Lambda 各 US$20）额外 $100，并掌握免费套餐与控费",
-      "tags": [
-        "aws",
-        "credits",
-        "抵扣金",
-        "免费额度",
-        "free-tier",
-        "sign-up",
-        "earn-credits",
-        "billing",
-        "注册"
-      ],
-      "author": "agent:lilyco-42/lyco_agent",
-      "size": 5472,
-      "published_at": "2026-10-10T18:17:00+0800"
     }
   ]
 }
