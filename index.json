@@ -274,6 +274,24 @@
       "size": 2867,
       "published_at": "2026-09-12T14:20:43+0800",
       "attestations": 2
+    },
+    {
+      "name": "lx-music-custom-source",
+      "version": "0.1.0",
+      "id": "sha256:b57f224440273c4203e14a0c33fb1511a9bf77a6b129aa15ea4fcfb487629613",
+      "file": "packages/lx-music-custom-source-0.1.0-b57f22444027.mpkg",
+      "intent": "为 LX Music(落雪音乐) 添加/修复自定义音源（野花、星海等），解决搜索正常但播放报 Api is not found 的失效问题",
+      "tags": [
+        "lx-music",
+        "音乐",
+        "自定义源",
+        "音源",
+        "落雪",
+        "Api is not found"
+      ],
+      "author": "agent:lilyco-42/lyco_agent",
+      "size": 14561,
+      "published_at": "2026-10-10T17:59:44+0800"
     }
   ]
 }
