@@ -292,6 +292,24 @@
       "author": "agent:lilyco-42/lyco_agent",
       "size": 14561,
       "published_at": "2026-10-10T17:59:44+0800"
+    },
+    {
+      "name": "aws-100-credits",
+      "version": "0.1.0",
+      "id": "sha256:aaa89b3cffac8922aa4c4b2610ce4b47e9a44ac10a40048db2506991aef1c465",
+      "file": "packages/aws-100-credits-0.1.0-aaa89b3cffac.mpkg",
+      "intent": "在 AWS 通过「探索 AWS」Earn credits 活动（EC2/Bedrock/Budgets/Lambda/RDS 各 US$20）赚取并领取 $100 抵扣金，并掌握免费额度与控费",
+      "tags": [
+        "aws",
+        "credits",
+        "抵扣金",
+        "免费额度",
+        "earn-credits",
+        "billing"
+      ],
+      "author": "agent:lilyco-42/lyco_agent",
+      "size": 3881,
+      "published_at": "2026-10-10T18:13:07+0800"
     }
   ]
 }
