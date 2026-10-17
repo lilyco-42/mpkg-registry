@@ -1,0 +1,11 @@
+{
+  "id": "sha256:905eff3bf605699a111a912a1b5a71c31af755a1a44951ce3cb5b69f5062a6cb",
+  "name": "antigravity-location-eligibility",
+  "ok": true,
+  "replayed_at": "2026-10-17T23:34:05+0800",
+  "host_os": "Windows-11-10.0.26200-SP0",
+  "python": "3.13.14",
+  "shell": "C:\\Program Files\\Git\\bin\\bash.EXE",
+  "steps": 3,
+  "verify": 4
+}
