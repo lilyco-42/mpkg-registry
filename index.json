@@ -496,6 +496,27 @@
       "size": 2867,
       "published_at": "2026-09-12T14:20:43+0800",
       "attestations": 2
+    },
+    {
+      "name": "antigravity-location-eligibility",
+      "version": "0.1.0",
+      "id": "sha256:905eff3bf605699a111a912a1b5a71c31af755a1a44951ce3cb5b69f5062a6cb",
+      "file": "packages/antigravity-location-eligibility-0.1.0-905eff3bf605.mpkg",
+      "intent": "修复 Antigravity CLI(agy.exe)/Gemini Code Assist 报 'Eligibility check failed: not currently available in your location'：根因是 Google 账号关联地区(如 China)不在支持列表，与出口 IP 无关；解法=Google 官方 country-association-form 提交改区申请(目标支持地区如 US-CA) + 等待审核 + 改区生效后撤销旧 OAuth 授权、清本地缓存重新登录触发一次性验证刷新资格",
+      "tags": [
+        "antigravity",
+        "gemini-code-assist",
+        "agy",
+        "eligibility",
+        "location",
+        "country-association",
+        "google",
+        "proxy",
+        "troubleshooting"
+      ],
+      "author": "",
+      "size": 6633,
+      "published_at": "2026-10-17T23:34:21+0800"
     }
   ]
 }
