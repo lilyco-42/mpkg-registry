@@ -1,0 +1,54 @@
+{
+  "mpkg_id": "sha256:b4d1bf6ec7dfa8c59c1b29b22762528a7e217aa19c5858188d27b24bc34bfe66",
+  "name": "lain42-stripe-online-payment",
+  "ok": true,
+  "steps": [
+    {
+      "cmd": "PYTHONIOENCODING=utf-8 python C:/Users/liuqi/AppData/Local/Temp/mpkg-d_ws6n7q/pkg/artifacts/replay_mock_payment.py --work C:/Users/liuqi/AppData/Local/Temp/mpkg-d_ws6n7q/work",
+      "exit": 0,
+      "ms": 127,
+      "stdout_tail": "[replay] 订单已写入 C:/Users/liuqi/AppData/Local/Temp/mpkg-d_ws6n7q/work\\orders.json\n[replay] mock 支付闭环 OK: session=cs_test_mock_ebe233fea964b273 token=21fad8872eb9... expires_at=2027-10-17T18:04:13Z\nALL PASS",
+      "stderr_tail": "",
+      "n": 1,
+      "ok": true
+    },
+    {
+      "cmd": "curl -s -m 15 https://lain42.top/studio/api/payments/stripe | grep -q '\"configured\":true'",
+      "exit": 0,
+      "ms": 177,
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "n": 2,
+      "ok": true
+    }
+  ],
+  "verify": [
+    {
+      "cmd": "PYTHONIOENCODING=utf-8 python C:/Users/liuqi/AppData/Local/Temp/mpkg-d_ws6n7q/pkg/artifacts/replay_mock_payment.py --check",
+      "exit": 0,
+      "ms": 106,
+      "stdout_tail": "[replay] mock 支付闭环 OK: session=cs_test_mock_73f0d407a7c1a3db token=ef9a1b3d86f6... expires_at=2027-10-17T18:04:13Z\nALL PASS",
+      "stderr_tail": ""
+    },
+    {
+      "cmd": "test -f C:/Users/liuqi/AppData/Local/Temp/mpkg-d_ws6n7q/work/orders.json",
+      "exit": 0,
+      "ms": 45,
+      "stdout_tail": "",
+      "stderr_tail": ""
+    },
+    {
+      "cmd": "curl -s -m 15 https://lain42.top/shop/ | grep -q 'stripePacks'",
+      "exit": 0,
+      "ms": 171,
+      "stdout_tail": "",
+      "stderr_tail": ""
+    }
+  ],
+  "host": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.13",
+    "shell": "C:\\Program Files\\Git\\bin\\bash.EXE"
+  },
+  "replayed_at": "2026-10-18T02:04:13+0800"
+}
