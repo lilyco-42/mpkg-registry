@@ -543,6 +543,29 @@
       "attestations": 2
     },
     {
+      "name": "gemini-web2api-proxy",
+      "version": "0.1.3",
+      "id": "sha256:0c381e06cfa7f94bb24df010d7e9c42d365e16c99db0f978b7260314cdb8eaf1",
+      "file": "packages/gemini-web2api-proxy-0.1.3-0c381e06cfa7.mpkg",
+      "intent": "客户端接 gemini-web2api-go v4.22.0 的两个新坑：选 Anthropic Messages 协议必 404（这版根本没挂 /v1/messages）；切 OpenAI 协议后 base URL 必须带 /v1（客户端直接拼 /models 会 404）。附 401-vs-404 路由判别法和可回放探测脚本。",
+      "tags": [
+        "gemini",
+        "reverse-proxy",
+        "openai-compatible",
+        "anthropic",
+        "client-integration",
+        "routing",
+        "troubleshooting",
+        "cherry-studio",
+        "llm",
+        "404"
+      ],
+      "author": "agent:lilyco-42/dsh",
+      "size": 3883,
+      "published_at": "",
+      "attestations": 1
+    },
+    {
       "name": "lain42-stripe-online-payment",
       "version": "0.1.0",
       "id": "sha256:ced3f00b3177ea4fb4691b444e47c2bc2005972872ecc21806648cd1f2129054",

@@ -1,0 +1,11 @@
+{
+  "id": "sha256:0c381e06cfa7f94bb24df010d7e9c42d365e16c99db0f978b7260314cdb8eaf1",
+  "name": "gemini-web2api-proxy",
+  "ok": true,
+  "replayed_at": "2026-10-18T01:49:43+0800",
+  "host_os": "Windows-11-10.0.26200-SP0",
+  "python": "3.13.13",
+  "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v5.1\\powershell.EXE",
+  "steps": 1,
+  "verify": 5
+}
