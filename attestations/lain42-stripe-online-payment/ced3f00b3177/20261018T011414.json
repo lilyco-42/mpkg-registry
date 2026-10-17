@@ -1,0 +1,38 @@
+{
+  "mpkg_id": "sha256:ced3f00b3177ea4fb4691b444e47c2bc2005972872ecc21806648cd1f2129054",
+  "name": "lain42-stripe-online-payment",
+  "ok": true,
+  "steps": [
+    {
+      "cmd": "python C:/Users/liuqi/AppData/Local/Temp/mpkg-bj2pce3z/pkg/artifacts/replay_mock_payment.py --work C:/Users/liuqi/AppData/Local/Temp/mpkg-bj2pce3z/work",
+      "exit": 0,
+      "ms": 236,
+      "stdout_tail": "[replay] 订单已写入 C:/Users/liuqi/AppData/Local/Temp/mpkg-bj2pce3z/work\\orders.json\n[replay] mock 支付闭环 OK: session=cs_test_mock_62645647d09545d8 token=418c1dc03117... expires_at=2027-10-17T17:14:13Z\nALL PASS",
+      "stderr_tail": "",
+      "n": 1,
+      "ok": true
+    }
+  ],
+  "verify": [
+    {
+      "cmd": "python C:/Users/liuqi/AppData/Local/Temp/mpkg-bj2pce3z/pkg/artifacts/replay_mock_payment.py --check",
+      "exit": 0,
+      "ms": 191,
+      "stdout_tail": "[replay] mock 支付闭环 OK: session=cs_test_mock_c50c9ddf5518f69a token=09618adcea76... expires_at=2027-10-17T17:14:13Z\nALL PASS",
+      "stderr_tail": ""
+    },
+    {
+      "cmd": "test -f C:/Users/liuqi/AppData/Local/Temp/mpkg-bj2pce3z/work/orders.json",
+      "exit": 0,
+      "ms": 91,
+      "stdout_tail": "",
+      "stderr_tail": ""
+    }
+  ],
+  "host": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.13",
+    "shell": "C:\\Program Files\\Git\\bin\\bash.EXE"
+  },
+  "replayed_at": "2026-10-18T01:14:14+0800"
+}

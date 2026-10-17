@@ -541,6 +541,30 @@
       "size": 2867,
       "published_at": "2026-09-12T14:20:43+0800",
       "attestations": 2
+    },
+    {
+      "name": "lain42-stripe-online-payment",
+      "version": "0.1.0",
+      "id": "sha256:ced3f00b3177ea4fb4691b444e47c2bc2005972872ecc21806648cd1f2129054",
+      "file": "packages/lain42-stripe-online-payment-0.1.0-ced3f00b3177.mpkg",
+      "intent": "lain42 积分商城接入 Stripe 在线收款：本地最小测试（mock→真实 Test）跑通『下单→支付→订单落库→发放订阅』闭环，含中国大陆主体注册限制、Managed Payments 税务码报错、webhook 兜底三条关键经验",
+      "tags": [
+        "stripe",
+        "在线收款",
+        "支付",
+        "checkout",
+        "merchant-of-record",
+        "managed-payments",
+        "lain42",
+        "订阅",
+        "mock-test",
+        "webhook",
+        "积分商城"
+      ],
+      "author": "agent:lilyco-42/doubao",
+      "size": 6533,
+      "published_at": "",
+      "attestations": 1
     }
   ]
 }
