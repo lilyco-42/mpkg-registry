@@ -4,6 +4,30 @@
   "packages": [
     {
       "name": "ip-wallpaper-pipeline",
+      "version": "0.1.1",
+      "id": "sha256:f8d00f6003c6ed169124f54b96ef67bf5ee5f4f0a8c485e5bfe44dc8427f88f1",
+      "file": "packages/ip-wallpaper-pipeline-0.1.1-f8d00f6003c6.mpkg",
+      "intent": "热门IP二次元手机壁纸数字商品流水线：GPT/Gemini 点名生成 → 本地 4K 放大 → 闲鱼¥7.7上架 + 小红书引流 + 夸克网盘永久分享供粉丝下载原图，零边际成本批量铺货",
+      "tags": [
+        "wallpaper",
+        "genshin",
+        "ip",
+        "4k",
+        "digital-goods",
+        "monetization",
+        "goofish",
+        "xiaohongshu",
+        "quark",
+        "dalle",
+        "gemini"
+      ],
+      "author": "",
+      "size": 2898922,
+      "published_at": "2026-10-17T14:50:51+0800",
+      "attestations": 0
+    },
+    {
+      "name": "ip-wallpaper-pipeline",
       "version": "0.1.0",
       "id": "sha256:321d1beeae3d965acddab8bc065c5e6b5ada50cd946092ef2bdaebb30547d611",
       "file": "packages/ip-wallpaper-pipeline-0.1.0-321d1beeae3d.mpkg",
