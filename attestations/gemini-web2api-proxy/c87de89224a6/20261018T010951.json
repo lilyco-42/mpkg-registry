@@ -1,0 +1,11 @@
+{
+  "id": "sha256:c87de89224a699896b170d71ccf4fb4200b3b61249a15487a6a339d9867ed7ef",
+  "name": "gemini-web2api-proxy",
+  "ok": true,
+  "replayed_at": "2026-10-18T01:09:23+0800",
+  "host_os": "Windows-11-10.0.26200-SP0",
+  "python": "3.14.6",
+  "shell": "C:\\Program Files\\Git\\bin\\bash.EXE",
+  "steps": 2,
+  "verify": 7
+}
