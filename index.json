@@ -427,6 +427,28 @@
       "size": 2867,
       "published_at": "2026-09-12T14:20:43+0800",
       "attestations": 2
+    },
+    {
+      "name": "workbuddy-ai-launch-fix",
+      "version": "0.1.0",
+      "id": "sha256:517bc710c3fa402dc4641893d969d98d967e8729db213d07454d52dd2659d6fd",
+      "file": "packages/workbuddy-ai-launch-fix-0.1.0-517bc710c3fa.mpkg",
+      "intent": "修复 WorkBuddy AI（国际版，账号 lilyco-42/global）无法启动：国内版 WorkBuddy 5.8.3 自动更新覆盖共享 app.asar 与 cli/product.json（dataFolderName 变 .workbuddy），WorkBuddyAI.exe 5.7.6 加载 5.8.3 asar 启动 1.1s 即退出（-36861）。解法：启动器内设置 WORKBUDDY_CONFIG_DIR/WORKBUDDY_USER_DATA_DIR 环境变量强制指向 ~/.workbuddy-ai 数据目录，不动共享文件、不影响国内版。",
+      "tags": [
+        "workbuddy",
+        "workbuddy-ai",
+        "国际版",
+        "启动失败",
+        "electron",
+        "asar",
+        "product.json",
+        "windows",
+        "环境变量",
+        "bugfix"
+      ],
+      "author": "",
+      "size": 3869,
+      "published_at": "2026-10-17T17:48:33+0800"
     }
   ]
 }
