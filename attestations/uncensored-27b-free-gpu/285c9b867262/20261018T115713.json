@@ -1,0 +1,11 @@
+{
+  "id": "sha256:285c9b86726208dfdce2cbc3fcf64b0e91b31bf8d72e0c62fc849b5120677926",
+  "name": "uncensored-27b-free-gpu",
+  "ok": true,
+  "replayed_at": "2026-10-18T11:57:02+0800",
+  "host_os": "Windows-11-10.0.26200-SP0",
+  "python": "3.14.6",
+  "shell": "C:\\Program Files\\Git\\bin\\bash.EXE",
+  "steps": 1,
+  "verify": 6
+}
