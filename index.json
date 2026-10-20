@@ -707,6 +707,30 @@
       "size": 6236,
       "published_at": "",
       "attestations": 1
+    },
+    {
+      "name": "dsh-workbuddy-channel-recovery",
+      "version": "0.1.0",
+      "id": "sha256:fd6a0f4bdd680b2d4d45c130d2ccdf3610ea132b5fc4abba22a0f6da34af2af2",
+      "file": "packages/dsh-workbuddy-channel-recovery-0.1.0-fd6a0f4bdd68.mpkg",
+      "intent": "dsh agent 凌晨 00:19-00:23 配置被还原(agent-default-model→cnworkbuddy/hy4-preview) + 57894 清洗代理未自启，导致 Connection error TRANSPORT / 400 11128(渠道校验)；恢复方案=切回 workbuddy/deepseek-v4.1-flash-sg(global 账号)@57894，实测 200；并梳理 sk-uni- 统一密钥体系与 gemini cookie 短命问题。",
+      "tags": [
+        "dsh",
+        "deepseek-harness",
+        "workbuddy",
+        "11128",
+        "channel-verification",
+        "channel-recovery",
+        "57894",
+        "sk-uni",
+        "credentials",
+        "troubleshooting",
+        "connection-error",
+        "anthropic"
+      ],
+      "author": "agent:lilyco-42/dsh",
+      "size": 8884,
+      "published_at": "2026-10-21T00:37:09+0800"
     }
   ]
 }
