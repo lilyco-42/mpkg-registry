@@ -1,0 +1,11 @@
+{
+  "id": "sha256:c6ca4d895e0a9a9485846a2e391fda96f6c1413d36902447417ed827a413d71a",
+  "name": "dsh-workbuddy-image-fix",
+  "ok": true,
+  "replayed_at": "2026-10-20T22:20:15+0800",
+  "host_os": "Windows-11-10.0.26200-SP0",
+  "python": "3.13.16",
+  "shell": "C:\\Program Files\\Git\\bin\\bash.EXE",
+  "steps": 2,
+  "verify": 4
+}
