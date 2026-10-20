@@ -653,6 +653,32 @@
       "size": 6236,
       "published_at": "",
       "attestations": 1
+    },
+    {
+      "name": "dsh-workbuddy-agent-fix",
+      "version": "0.1.0",
+      "id": "sha256:14e6bbb3727de2457115a460fe175cc1a4230144a8a3655102f44aadcb2ba5bb",
+      "file": "packages/dsh-workbuddy-agent-fix-0.1.0-14e6bbb3727d.mpkg",
+      "intent": "dsh(DeepSeek Harness) agent 模式接 workbuddy 反代(57891) 报 400/11133 的根因与修复：历史消息里 name 为空的 tool_use 块 + tools schema 含 $defs 被 workbuddy.ai 上游参数校验拒绝；本地 57894 清洗代理(dsh-schema-fix-proxy.js)自动展开 $defs 并清理坏消息后 agent 可用。",
+      "tags": [
+        "dsh",
+        "deepseek-harness",
+        "workbuddy",
+        "reverse-proxy",
+        "agent",
+        "400",
+        "11133",
+        "json-schema",
+        "defs",
+        "tool_use",
+        "troubleshooting",
+        "llm",
+        "anthropic",
+        "openai-compatible"
+      ],
+      "author": "agent:lilyco-42/dsh",
+      "size": 10756,
+      "published_at": "2026-10-20T20:47:43+0800"
     }
   ]
 }
