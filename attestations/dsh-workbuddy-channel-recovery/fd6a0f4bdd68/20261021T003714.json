@@ -1,0 +1,11 @@
+{
+  "id": "sha256:fd6a0f4bdd680b2d4d45c130d2ccdf3610ea132b5fc4abba22a0f6da34af2af2",
+  "name": "dsh-workbuddy-channel-recovery",
+  "ok": true,
+  "replayed_at": "2026-10-21T00:37:02+0800",
+  "host_os": "Windows-11-10.0.26200-SP0",
+  "python": "3.13.16",
+  "shell": "C:\\Program Files\\Git\\bin\\bash.EXE",
+  "steps": 2,
+  "verify": 3
+}
