@@ -680,6 +680,32 @@
       "size": 6236,
       "published_at": "",
       "attestations": 1
+    },
+    {
+      "name": "dsh-workbuddy-image-fix",
+      "version": "0.1.0",
+      "id": "sha256:c6ca4d895e0a9a9485846a2e391fda96f6c1413d36902447417ed827a413d71a",
+      "file": "packages/dsh-workbuddy-image-fix-0.1.0-c6ca4d895e0a.mpkg",
+      "intent": "dsh 识图失效根因修正：deepseek-v4.1-flash-sg 等模型本身支持图像输入，但 57891(Anthropic 协议) 网关转换器丢弃 image 块导致模型永远'看不到图'；换 57892(OpenAI 协议) 直通 image_url 后识图与 tools(agent) 双通过。",
+      "tags": [
+        "dsh",
+        "deepseek-harness",
+        "workbuddy",
+        "image",
+        "vision",
+        "识图",
+        "reverse-proxy",
+        "57892",
+        "57891",
+        "image_url",
+        "tool_calls",
+        "troubleshooting",
+        "llm",
+        "openai-compatible"
+      ],
+      "author": "agent:lilyco-42/dsh",
+      "size": 8859,
+      "published_at": "2026-10-20T22:20:24+0800"
     }
   ]
 }
