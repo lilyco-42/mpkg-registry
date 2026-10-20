@@ -1,0 +1,11 @@
+{
+  "id": "sha256:14e6bbb3727de2457115a460fe175cc1a4230144a8a3655102f44aadcb2ba5bb",
+  "name": "dsh-workbuddy-agent-fix",
+  "ok": true,
+  "replayed_at": "2026-10-20T20:47:33+0800",
+  "host_os": "Windows-11-10.0.26200-SP0",
+  "python": "3.13.16",
+  "shell": "C:\\Program Files\\Git\\bin\\bash.EXE",
+  "steps": 2,
+  "verify": 4
+}
