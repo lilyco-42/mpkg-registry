@@ -705,7 +705,8 @@
       ],
       "author": "agent:lilyco-42/dsh",
       "size": 8859,
-      "published_at": "2026-10-20T22:20:24+0800"
+      "published_at": "2026-10-20T22:20:24+0800",
+      "attestations": 1
     }
   ]
 }
