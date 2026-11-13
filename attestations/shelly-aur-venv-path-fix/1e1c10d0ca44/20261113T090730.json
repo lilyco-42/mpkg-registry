@@ -1,0 +1,11 @@
+{
+  "id": "sha256:1e1c10d0ca44ae9f60a5349e5e7cfa38f326ab4318cb82cd643a51c23bbc6f16",
+  "name": "shelly-aur-venv-path-fix",
+  "ok": true,
+  "replayed_at": "2026-11-13T09:07:30+0800",
+  "host_os": "Linux-6.18.60-2-cachyos-lts-x86_64-with-glibc2.44",
+  "python": "3.14.10",
+  "shell": "/usr/bin/bash",
+  "steps": 10,
+  "verify": 5
+}
