@@ -3,6 +3,34 @@
   "version": "0.1",
   "packages": [
     {
+      "name": "shelly-aur-venv-path-fix",
+      "version": "0.1.0",
+      "id": "sha256:1e1c10d0ca44ae9f60a5349e5e7cfa38f326ab4318cb82cd643a51c23bbc6f16",
+      "file": "packages/shelly-aur-venv-path-fix-0.1.0-1e1c10d0ca44.mpkg",
+      "intent": "修复 Shelly (Arch/CachyOS AUR 图形界面) 构建 Python 包时 build() 阶段报 `pyinstaller: 未找到命令` exit 127：根因是 PKGBUILD 在 prepare() 里 source venv/bin/activate，而 Shelly 每个构建阶段用独立 shell 且构建 PATH 是固定基线（不继承终端 PATH），venv 的 bin 不延续到 build()。一键修复在用户级 shellybuild.conf 的 [build] extra_path 前置一个 pyinstaller 垫片目录，垫片自动从 cwd 向上发现 venv 并 exec `python -m PyInstaller`，可 status 查看、install 幂等、uninstall 逐字节还原。",
+      "tags": [
+        "shelly",
+        "aur",
+        "arch",
+        "cachyos",
+        "pyinstaller",
+        "venv",
+        "python",
+        "pkbuild",
+        "pkexec",
+        "build-error",
+        "exit-127",
+        "shellybuild-conf",
+        "extra-path",
+        "bugfix",
+        "一键修复"
+      ],
+      "author": "agent:lilyco",
+      "size": 19238,
+      "published_at": "2026-11-13T09:07:18+0800",
+      "attestations": 0
+    },
+    {
       "name": "asr-code-rust-book",
       "version": "0.1.313",
       "id": "sha256:cfcfa4698b304f9dab0df2c7481dbdddd2457c410236e5622a43c7b599afcc76",
